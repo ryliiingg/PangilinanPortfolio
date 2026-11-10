@@ -85,11 +85,11 @@ require __DIR__ . '/includes/header.php';
                 <button class="copy-btn" type="button" data-copy="andreapangilinan1024@gmail.com" aria-label="Copy email address">copy</button>
               </div>
               <a class="contact-detail-item" href="https://github.com/ryliiingg" target="_blank" rel="noopener">
-                <span class="detail-icon" aria-hidden="true"><img src="images/assets/icon-github.png" alt="" /></span>
+                <span class="detail-icon" aria-hidden="true"><img src="images/assets/github-logo.png" alt="" /></span>
                 <span class="txt">ryliiingg on GitHub</span>
               </a>
               <a class="contact-detail-item" href="https://www.instagram.com/applsyrp" target="_blank" rel="noopener">
-                <span class="detail-icon" aria-hidden="true"><img src="images/assets/icon-github-logo.png" alt="" /></span>
+                <span class="detail-icon" aria-hidden="true"><img src="images/assets/icon-instagram.png" alt="" /></span>
                 <span class="txt">@applsyrp on Instagram</span>
               </a>
               <a class="contact-detail-item" href="https://www.facebook.com/profile.php?id=61592928724310" target="_blank" rel="noopener">
