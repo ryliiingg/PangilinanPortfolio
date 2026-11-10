@@ -1,0 +1,435 @@
+/* Admin: calm and simple, made from Andrea's drawings (biscuits, ribbon, tapes, cream, wings) */
+:root {
+  --cream: #fff8ef;
+  --milk: #ffe9ee;
+  --pink: #f6c9d6;
+  --pink-tape: #eaa0c0;
+  --strawberry: #c2577a;
+  --cherry: #9e1430;
+  --cocoa: #4b3a30;
+  --milk-choc: #8a6e61;
+  --vanilla-line: #d8bc98;
+  --ink-soft: #7a6156;
+  --shadow: drop-shadow(0 4px 0 rgba(75, 58, 48, 0.25)) drop-shadow(0 12px 16px rgba(75, 58, 48, 0.12));
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+[hidden] { display: none !important; }
+
+html,
+body {
+  cursor: url('../images/assets/cursor-wings-blue.png') 48 9, auto;
+}
+
+a, button, label, select, summary, .btn, .tabs a, .icon, .drop {
+  cursor: url('../images/assets/cursor-wings-white.png') 48 9, pointer !important;
+}
+
+input, textarea { cursor: text !important; }
+img { -webkit-user-drag: none; user-select: none; }
+
+body {
+  font-family: 'Nunito', sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--cocoa);
+  background-color: var(--cream);
+  background-image: radial-gradient(rgba(234, 160, 192, 0.35) 2px, transparent 2.5px);
+  background-size: 26px 26px;
+  min-height: 100vh;
+}
+
+a { color: var(--strawberry); }
+h1, h2 { font-family: 'Fredoka', sans-serif; font-weight: 600; line-height: 1.2; }
+h1 { font-size: 1.9rem; }
+h2 { font-size: 1.15rem; margin: 8px 0; }
+.muted { color: var(--ink-soft); font-weight: 400; }
+
+/* whipped cream under page titles */
+h1::after {
+  content: '';
+  display: block;
+  width: 130px;
+  height: 22px;
+  margin: 2px 0 6px;
+  background: url('../images/assets/Whipped_creaml_line.png') left center / contain no-repeat;
+}
+
+.card.narrow h1::after { margin: 2px auto 6px; background-position: center; }
+
+/* ---------- biscuit boxes (admin.js picks the drawing; --flavour picks the colour) ---------- */
+.btn, .tabs a, .icon, .card, .message, .empty {
+  --flavour: pink;
+  border: 12px solid transparent;
+  background: none;
+  background-origin: border-box;
+  background-clip: border-box;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  filter: var(--shadow);
+}
+
+/* ---------- top bar: the pink biscuit, like the website's floating nav ---------- */
+.topbar {
+  --h: 64px;
+  --cap: calc(var(--h) * 0.49);
+  position: sticky;
+  top: 12px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 16px;
+  max-width: 1100px;
+  height: var(--h);
+  margin: 12px auto 0;
+  padding: 0 28px 0 34px;
+  background:
+    url('../images/assets/biscuits/Nav_cap_left.png') left center / auto 100% no-repeat,
+    url('../images/assets/biscuits/Nav_cap_right.png') right center / auto 100% no-repeat;
+  filter: var(--shadow);
+}
+
+.topbar::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: calc(var(--cap) - 1px);
+  right: calc(var(--cap) - 1px);
+  background: url('../images/assets/biscuits/Nav_mid.png') left center / auto 100% round no-repeat;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+  font-size: 1.15rem;
+  color: var(--cocoa);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.brand img { width: 44px; }
+
+.topbar nav { display: flex; align-items: center; gap: 2px; }
+
+.topbar nav a,
+.topbar nav .link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font: 600 .95rem 'Fredoka', sans-serif;
+  color: var(--cocoa);
+  text-decoration: none;
+  white-space: nowrap;
+  background: none;
+  border: 0;
+}
+
+.topbar nav a:hover, .topbar nav .link:hover { background: rgba(255, 255, 255, 0.6); color: var(--cherry); }
+.topbar nav a.on { background: var(--pink); }
+
+.badge {
+  display: inline-block;
+  min-width: 20px;
+  padding: 0 6px;
+  font-size: .75rem;
+  line-height: 20px;
+  text-align: center;
+  color: #fff;
+  background: var(--cherry);
+  border-radius: 999px;
+}
+
+.badge:empty { display: none; }
+
+/* ---------- page ---------- */
+.page { max-width: 980px; margin: 0 auto; padding: 34px 20px 70px; }
+
+.page-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+/* cards: pink biscuit for login/setup/account, vanilla for the bigger edit form */
+.card {
+  --flavour: vanilla;
+  position: relative;
+  border-width: 40px;
+  padding: 6px 10px;
+}
+
+.card.narrow {
+  --flavour: pink;
+  max-width: 470px;
+  margin: 80px auto 0;
+  text-align: center;
+}
+
+.card.narrow .form { text-align: left; }
+.card-bow { width: 120px; margin: -96px auto 4px; display: block; }
+
+/* toasts and page messages */
+.toast,
+.flash {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  color: var(--cream);
+  background: var(--cocoa);
+  border-radius: 999px;
+  box-shadow: 0 4px 0 var(--pink-tape);
+}
+
+.flash { display: inline-block; margin: 0 0 18px; padding: 8px 20px; }
+.flash--error, .toast--error { background: var(--cherry); }
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 26px;
+  z-index: 50;
+  max-width: calc(100% - 32px);
+  padding: 9px 22px;
+  text-align: center;
+  opacity: 0;
+  transform: translate(-50%, 24px);
+  transition: opacity .25s, transform .3s;
+  pointer-events: none;
+}
+
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+.empty {
+  --flavour: vanilla;
+  border-width: 28px;
+  padding: 10px;
+  text-align: center;
+}
+
+.empty img { width: 90px; margin: 0 auto 8px; display: block; }
+
+/* ---------- buttons: pink biscuits ---------- */
+.btn {
+  --flavour: pink;
+  display: inline-block;
+  border-width: 10px;
+  padding: 3px 14px;
+  font: 600 1rem 'Fredoka', sans-serif;
+  color: var(--cocoa);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: transform .2s;
+}
+
+.btn:hover { transform: translateY(-2px) rotate(-2deg); }
+.btn:active { transform: scale(.95); }
+.btn:disabled { opacity: .6; }
+.btn--small { border-width: 8px; padding: 1px 10px; font-size: .9rem; }
+.btn--ghost { --flavour: vanilla; }
+.btn--danger { --flavour: choco; color: var(--cream); }
+
+/* ---------- forms ---------- */
+.form { display: grid; gap: 14px; margin-top: 16px; }
+.form label, .form .label { display: grid; gap: 6px; font-weight: 700; font-size: .95rem; }
+.form label.check { display: flex; align-items: flex-start; gap: 8px; font-weight: 600; }
+.form label.check input { margin-top: 4px; accent-color: var(--strawberry); }
+
+.form input[type="text"],
+.form input[type="password"],
+.form select,
+.form textarea {
+  width: 100%;
+  padding: 10px 14px;
+  font: 400 1rem 'Nunito', sans-serif;
+  color: var(--cocoa);
+  background: var(--cream);
+  border: 2px solid var(--cocoa);
+  border-radius: 16px;
+  outline: none;
+  transition: box-shadow .2s;
+}
+
+.form input:focus, .form select:focus, .form textarea:focus { background: #fff; box-shadow: 0 4px 0 var(--pink-tape); }
+.form .btn { justify-self: start; }
+.form h2 { margin-top: 10px; }
+
+.form-cols { display: grid; gap: 24px; grid-template-columns: 1.2fr 1fr; align-items: start; }
+
+/* image picker: a polaroid with tape */
+.drop {
+  position: relative;
+  display: grid !important;
+  place-items: center;
+  min-height: 280px;
+  padding: 12px;
+  text-align: center;
+  font-weight: 600 !important;
+  color: var(--ink-soft);
+  background: #fffaf3;
+  border: 2px dashed var(--vanilla-line);
+  border-radius: 14px;
+}
+
+.drop::before {
+  content: '';
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  width: 96px;
+  height: 32px;
+  transform: translateX(-50%) rotate(-4deg);
+  background: url('../images/assets/Pink_tape.png') center / contain no-repeat;
+}
+
+.drop:hover { background: var(--milk); }
+.drop img { max-width: 100%; max-height: 360px; border-radius: 10px; }
+.drop input { position: absolute; inset: 0; opacity: 0; }
+
+/* ---------- gallery tabs: vanilla biscuits, chocolate when chosen ---------- */
+.tabs { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+
+.tabs a {
+  --flavour: vanilla;
+  border-width: 10px;
+  padding: 2px 12px;
+  font: 600 1rem 'Fredoka', sans-serif;
+  color: var(--cocoa);
+  text-decoration: none;
+  transition: transform .2s;
+}
+
+.tabs a:hover { transform: translateY(-2px) rotate(-2deg); }
+.tabs a span { color: var(--strawberry); margin-left: 2px; }
+.tabs a.on { --flavour: choco; color: var(--cream); }
+.tabs a.on span { color: var(--pink); }
+
+/* ---------- works list: thumbnails on a cream mat with washi tape ---------- */
+.work-list { list-style: none; display: grid; gap: 14px; }
+
+.work-list li {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 12px 16px;
+  background: #fff;
+  border: 2px solid #f1e3d3;
+  border-radius: 20px;
+  filter: var(--shadow);
+}
+
+.thumb {
+  position: relative;
+  flex: none;
+  padding: 5px;
+  background: #fffaf3;
+  border-radius: 10px;
+  outline: 2px solid var(--vanilla-line);
+  transform: rotate(-2deg);
+}
+
+.work-list li:nth-child(even) .thumb { transform: rotate(2deg); }
+
+.thumb::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  width: 54px;
+  height: 18px;
+  transform: translateX(-50%) rotate(-4deg);
+  background: url('../images/assets/Pink_tape.png') center / contain no-repeat;
+}
+
+.work-list li:nth-child(3n+2) .thumb::before { background-image: url('../images/assets/Blue_tape.png'); }
+.work-list li:nth-child(3n+3) .thumb::before { background-image: url('../images/assets/Yellow_tape.png'); }
+
+.thumb img {
+  display: block;
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  background: var(--milk);
+  border-radius: 6px;
+}
+
+.thumb img.contain { object-fit: contain; padding: 3px; }
+.work-list .info { flex: 1; min-width: 0; display: grid; }
+.work-list .info strong { font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 1.05rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.actions { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; }
+.actions form { display: flex; gap: 4px; }
+
+/* small round-ish biscuits for ★ ↑ ↓ */
+.icon {
+  --flavour: vanilla;
+  width: 42px;
+  height: 38px;
+  border-width: 7px;
+  padding: 0;
+  font-size: 1rem;
+  line-height: 1;
+  color: var(--cocoa);
+  transition: transform .2s;
+}
+
+.icon:hover:not(:disabled) { transform: translateY(-2px) rotate(-6deg); }
+.icon:disabled { opacity: .35; }
+.star { color: #cdbcae; }
+.icon.star.on { --flavour: pink; color: #e0a126; }
+.muted .star.on { color: #e0a126; }
+
+/* ---------- messages: vanilla biscuits with tape, pink when unread ---------- */
+.message {
+  --flavour: vanilla;
+  position: relative;
+  margin-bottom: 22px;
+  border-width: 26px;
+  padding: 6px 10px;
+}
+
+.message.unread { --flavour: pink; }
+
+.message::before {
+  content: '';
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  width: 96px;
+  height: 32px;
+  transform: translateX(-50%) rotate(-3deg);
+  background: url('../images/assets/Yellow_tape.png') center / contain no-repeat;
+}
+
+.message.unread::before { background-image: url('../images/assets/Pink_tape.png'); }
+.message header { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 6px 16px; }
+.message header div { display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: baseline; }
+.message header strong { font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 1.1rem; }
+.message p { margin: 6px 0 12px; overflow-wrap: anywhere; }
+.message footer { display: flex; flex-wrap: wrap; gap: 8px; }
+
+@media (max-width: 760px) {
+  .topbar {
+    --h: 58px;
+    position: relative;
+    top: 0;
+    height: auto;
+    min-height: var(--h);
+    flex-wrap: wrap;
+    margin: 10px 10px 0;
+    padding: 6px 22px;
+  }
+
+  .topbar nav { flex-wrap: wrap; }
+  .form-cols { grid-template-columns: 1fr; }
+  .work-list li { flex-wrap: wrap; }
+  .actions { width: 100%; justify-content: flex-end; }
+}
