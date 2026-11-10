@@ -1,0 +1,9 @@
+DirectoryIndex index.php index.html
+Options -Indexes
+
+# old .html links keep working (built from the requested URL, so it works in any folder)
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{REQUEST_URI} ^(.*/)(index|illustrations|multimedia|certificates|contact)\.html$
+  RewriteRule ^ %1%2.php [R=301,L]
+</IfModule>

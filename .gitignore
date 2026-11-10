@@ -1,0 +1,6 @@
+# Windows clutter
+Thumbs.db
+desktop.ini
+
+# The database holds your admin login and private messages
+data/*.sqlite
