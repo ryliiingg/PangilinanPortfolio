@@ -2,7 +2,7 @@ Andrea Pauline D. Pangilinan
 
 Dessert Themed
 
-How to run the website and use its admin page.
+How to run the website
 
 Run it on the computer
 
